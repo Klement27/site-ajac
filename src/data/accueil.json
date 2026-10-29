@@ -1,0 +1,108 @@
+{
+  "hero": {
+    "eyebrow": "Association de quartier · Saint-Paul, La Réunion",
+    "titleLines": [
+      "Au Guillaume,",
+      "on avance",
+      "ensemble"
+    ],
+    "since": "depuis 1996",
+    "text": "Randonnées, tournois, rencontres et projets pour les jeunes : depuis sa relance en mai 2026, l'AJAC redonne de l'élan à la vie du quartier.",
+    "ctaPrimary": {
+      "label": "Nous contacter",
+      "href": "/contact/"
+    },
+    "ctaSecondary": {
+      "label": "Découvrir nos activités",
+      "href": "#activites"
+    },
+    "image": "/images/hero.jpg",
+    "imageAlt": ""
+  },
+  "activites": {
+    "id": "activites",
+    "title": "Nos activités",
+    "intro": "Du sentier au terrain de foot, nos actions ont un même but : créer du lien entre les habitants et donner aux jeunes une place active dans le quartier.",
+    "cta": {
+      "label": "Voir toutes nos activités",
+      "href": "/activites/"
+    }
+  },
+  "apropos": {
+    "id": "qui-sommes-nous",
+    "label": "Qui sommes-nous",
+    "title": "Une histoire de quartier",
+    "text": [
+      "Née en 1996 au cœur du Guillaume, l'AJAC accompagne depuis toujours les jeunes et les familles du quartier à travers le sport, la culture et la prévention.",
+      "Après quelques années plus calmes, une nouvelle équipe a relancé l'association en mai 2026. Pas à pas, elle reconstruit un collectif soudé et prépare les projets de demain avec les habitants."
+    ],
+    "subtitle": "Ce qui nous anime",
+    "points": [
+      {
+        "title": "Ancrés depuis 1996",
+        "text": "Trente ans de présence au Guillaume et une connaissance fine du quartier."
+      },
+      {
+        "title": "Un nouvel élan",
+        "text": "Une relance portée par des membres motivés depuis mai 2026."
+      },
+      {
+        "title": "La jeunesse au centre",
+        "text": "Responsabilité, respect et citoyenneté au cœur de nos projets."
+      },
+      {
+        "title": "Ouverts au quartier",
+        "text": "Des moments partagés entre membres, familles et habitants."
+      }
+    ],
+    "image": "/images/groupe.jpg",
+    "imageAlt": "Les membres de l'AJAC réunis lors d'une sortie au Guillaume",
+    "imagePlaceholder": "Photo de groupe à venir",
+    "cta": {
+      "label": "En savoir plus sur l'association",
+      "href": "/qui-sommes-nous/"
+    }
+  },
+  "facebook": {
+    "id": "suivez-nous",
+    "label": "Suivez-nous",
+    "title": "Rejoignez la communauté du Guillaume sur Facebook",
+    "text": "Photos des sorties, dates des prochains rendez-vous, nouvelles du quartier : tout se passe sur notre page. Abonnez-vous pour ne rien manquer.",
+    "cta": "Voir notre page Facebook",
+    "bubbles": [
+      {
+        "icon": "camera",
+        "text": "Photos des sorties"
+      },
+      {
+        "icon": "calendar",
+        "text": "Prochains rendez-vous"
+      },
+      {
+        "icon": "megaphone",
+        "text": "Actus du quartier"
+      }
+    ],
+    "highlights": [
+      "Gratuit, en un clic",
+      "Les dates en avant-première",
+      "Les photos de chaque sortie"
+    ],
+    "moreLink": {
+      "label": "Pourquoi nous suivre ?",
+      "href": "/suivez-nous/"
+    }
+  },
+  "contact": {
+    "id": "contact",
+    "label": "Contact",
+    "title": "Une question ? Parlons-en",
+    "text": "Un appel ou un email suffit : un membre de l'association vous répondra avec plaisir.",
+    "phoneLabel": "Téléphone",
+    "emailLabel": "Email",
+    "facebookLabel": "Facebook",
+    "facebookText": "Écrivez-nous sur notre page",
+    "placeLabel": "Où nous trouver",
+    "horairesLabel": "Disponibilités"
+  }
+}

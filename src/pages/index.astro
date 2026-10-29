@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Activites from '../components/Activites.astro';
+import About from '../components/About.astro';
+import FacebookSection from '../components/FacebookSection.astro';
+import Partenaires from '../components/Partenaires.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { imageExists } from '../lib/site';
+import accueil from '../data/accueil.json';
+---
+
+<Base>
+  {imageExists(accueil.hero.image) && (
+    <link slot="head" rel="preload" as="image" href={accueil.hero.image} fetchpriority="high" />
+  )}
+  <Hero />
+  <Activites />
+  <About />
+  <FacebookSection />
+  <Partenaires />
+  <ContactSection />
+</Base>

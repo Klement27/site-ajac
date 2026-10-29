@@ -1,0 +1,14 @@
+{
+  "titre": "Avec le soutien de nos partenaires et institutions",
+  "footerTitre": "Avec le soutien de",
+  "partenaires": [
+    {
+      "nom": "Mairie de Saint-Paul",
+      "logo": "/images/partenaires/mairie-saint-paul-web.png",
+      "largeur": 480,
+      "hauteur": 294,
+      "role": "Partenaire institutionnel",
+      "url": ""
+    }
+  ]
+}

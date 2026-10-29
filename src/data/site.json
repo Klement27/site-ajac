@@ -1,0 +1,92 @@
+{
+  "siteConfig": {
+    "name": "AJAC",
+    "fullName": "Association Jeunesse Active et Culturelle du Guillaume",
+    "subtitle": "Association de quartier du Guillaume · Saint-Paul, La Réunion",
+    "shortPlace": "du Guillaume",
+    "foundedYear": 1996,
+    "devise": [
+      "Bouger",
+      "Découvrir",
+      "Grandir",
+      "Ensemble"
+    ],
+    "url": "",
+    "indexable": false,
+    "lang": "fr",
+    "locale": "fr_FR",
+    "themeColor": "#17324F",
+    "logo": "/logo.png",
+    "logoWeb": "/logo-240.png",
+    "logoSmall": "/logo-128.png",
+    "ogImage": "/images/og-image.jpg",
+    "contact": {
+      "email": "ajacguillaume046@gmail.com",
+      "phoneDisplay": "06 93 94 64 67",
+      "phoneHref": "+262693946467",
+      "address": "Le Guillaume, 97423 Saint-Paul, La Réunion",
+      "addressShort": "Le Guillaume, Saint-Paul",
+      "horaires": ""
+    },
+    "social": [
+      {
+        "name": "Facebook",
+        "icon": "facebook",
+        "url": "https://www.facebook.com/share/1KD59odcqG/?mibextid=wwXIfr"
+      }
+    ]
+  },
+  "seo": {
+    "defaultTitle": "AJAC – Association Jeunesse Active et Culturelle du Guillaume",
+    "titleSuffix": " | AJAC du Guillaume",
+    "defaultDescription": "Depuis 1996, l'AJAC anime le quartier du Guillaume à Saint-Paul (La Réunion) : randonnées, tournois de foot, actions pour les jeunes et vie de quartier."
+  },
+  "ui": {
+    "skipLink": "Aller au contenu",
+    "menuOpen": "Ouvrir le menu",
+    "menuClose": "Fermer le menu",
+    "headerCta": "Nous appeler",
+    "mobileBar": {
+      "call": "Appeler",
+      "contact": "Contact",
+      "label": "Actions rapides"
+    },
+    "provisoire": "Page en cours de construction : son contenu complet arrive bientôt.",
+    "backHome": "Retour à l'accueil",
+    "navLabel": "Menu principal",
+    "deviseLabel": "Notre devise",
+    "topbarLabel": "Coordonnées de l'association"
+  },
+  "footer": {
+    "about": "Une association de quartier qui réunit les jeunes et les habitants du Guillaume autour du sport, de la culture et de projets partagés.",
+    "cta": "Nous appeler",
+    "contactTitle": "Nous joindre",
+    "madeWith": "Fait avec cœur au Guillaume"
+  },
+  "mentionsLegales": {
+    "title": "Mentions légales",
+    "description": "Mentions légales du site de l'AJAC.",
+    "sections": [
+      {
+        "title": "Éditeur du site",
+        "text": "Association Jeunesse Active et Culturelle du Guillaume (AJAC), association loi 1901, Le Guillaume, 97423 Saint-Paul, La Réunion. Numéro RNA : à compléter."
+      },
+      {
+        "title": "Directeur de la publication",
+        "text": "Le président ou la présidente de l'association (nom à compléter)."
+      },
+      {
+        "title": "Hébergement",
+        "text": "Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis – vercel.com."
+      },
+      {
+        "title": "Données personnelles",
+        "text": "Ce site ne comporte aucun formulaire et ne dépose aucun cookie de suivi. Les informations que vous nous transmettez par téléphone ou par email servent uniquement à vous répondre."
+      },
+      {
+        "title": "Crédits",
+        "text": "Textes et photographies : AJAC, sauf mention contraire. Toute reproduction sans autorisation est interdite."
+      }
+    ]
+  }
+}

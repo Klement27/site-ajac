@@ -1,0 +1,78 @@
+{
+  "menu": [
+    {
+      "label": "Accueil",
+      "href": "/"
+    },
+    {
+      "label": "Qui sommes-nous",
+      "href": "/qui-sommes-nous/"
+    },
+    {
+      "label": "Nos activités",
+      "href": "/activites/"
+    },
+    {
+      "label": "Suivez-nous",
+      "href": "/suivez-nous/"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact/"
+    }
+  ],
+  "footer": [
+    {
+      "title": "Navigation",
+      "links": [
+        {
+          "label": "Accueil",
+          "href": "/"
+        },
+        {
+          "label": "Qui sommes-nous",
+          "href": "/qui-sommes-nous/"
+        },
+        {
+          "label": "Nos activités",
+          "href": "/activites/"
+        },
+        {
+          "label": "Suivez-nous",
+          "href": "/suivez-nous/"
+        },
+        {
+          "label": "Contact",
+          "href": "/contact/"
+        }
+      ]
+    },
+    {
+      "title": "Nos actions",
+      "links": [
+        {
+          "label": "Randonnées",
+          "href": "/activites/#randonnees"
+        },
+        {
+          "label": "Tournois de foot",
+          "href": "/activites/#tournois"
+        },
+        {
+          "label": "Actions jeunesse",
+          "href": "/activites/#jeunesse"
+        },
+        {
+          "label": "Vie du quartier",
+          "href": "/activites/#quartier"
+        }
+      ]
+    }
+  ],
+  "legal": [
+    {
+      "label": "Mentions légales",
+      "href": "/mentions-legales/"
+    }
+  ]
+}

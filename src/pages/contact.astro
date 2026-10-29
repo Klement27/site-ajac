@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Faq from '../components/Faq.astro';
+import pages from '../data/pages.json';
+
+const page = pages.contact;
+---
+
+<Base title={page.title} description={page.description}>
+  <PageHeader title={page.title} intro={page.intro} provisoire />
+  <ContactSection />
+  <Faq />
+</Base>

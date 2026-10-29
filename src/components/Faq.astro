@@ -1,0 +1,49 @@
+---
+import faq from '../data/faq.json';
+---
+
+<section class="section faq" aria-labelledby="faq-title">
+  <div class="container faq__inner">
+    <h2 class="section-title" id="faq-title">{faq.title}</h2>
+    <div class="faq__list">
+      {
+        faq.items.map((item) => (
+          <details class="faq__item">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__inner {
+    max-width: 52rem;
+  }
+
+  .faq__list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .faq__item {
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    background: var(--blanc);
+  }
+
+  .faq__item summary {
+    font-weight: 600;
+    color: var(--bleu-nuit);
+    cursor: pointer;
+  }
+
+  .faq__item p {
+    margin-top: 0.75rem;
+    color: var(--texte-doux);
+  }
+</style>

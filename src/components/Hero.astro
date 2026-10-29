@@ -1,0 +1,177 @@
+---
+import Icon from './Icon.astro';
+import { siteConfig, ui, imageExists } from '../lib/site';
+import accueil from '../data/accueil.json';
+
+const { hero } = accueil;
+const hasImage = imageExists(hero.image);
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  {
+    hasImage && (
+      <img
+        class="hero__bg"
+        src={hero.image}
+        alt={hero.imageAlt}
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+        decoding="async"
+      />
+    )
+  }
+  <div class="hero__veil" aria-hidden="true"></div>
+
+  <div class="container hero__inner">
+    <div class="hero__main">
+      <p class="hero__eyebrow">{hero.eyebrow}</p>
+      <h1 class="hero__title" id="hero-title">
+        {hero.titleLines.map((line) => <span class="hero__line">{line}</span>)}
+        <span class="hero__since">{hero.since}</span>
+      </h1>
+      <ul class="hero__devise" aria-label={ui.deviseLabel}>
+        {siteConfig.devise.map((mot) => <li>{mot}</li>)}
+      </ul>
+    </div>
+
+    <div class="hero__side">
+      <p class="hero__text">{hero.text}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href={hero.ctaPrimary.href}>
+          {hero.ctaPrimary.label}
+          <span class="btn__puck"><Icon name="arrow" size={20} /></span>
+        </a>
+        <a class="btn btn--ghost" href={hero.ctaSecondary.href}>
+          {hero.ctaSecondary.label}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--blanc);
+    /* Fond de repli tant que hero.jpg n'est pas fourni */
+    background:
+      radial-gradient(circle at 85% 15%, rgb(255 194 14 / 0.35), transparent 40%),
+      radial-gradient(circle at 10% 90%, rgb(76 154 42 / 0.55), transparent 45%),
+      linear-gradient(135deg, var(--bleu-nuit) 0%, var(--bleu-nuit-2) 55%, var(--vert-fonce) 100%);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Voile sombre : garantit le contraste du texte blanc quelle que soit la photo */
+  .hero__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(90deg, rgb(13 30 48 / 0.85) 0%, rgb(13 30 48 / 0.55) 60%, rgb(13 30 48 / 0.7) 100%),
+      linear-gradient(0deg, rgb(13 30 48 / 0.6) 0%, transparent 40%);
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    align-items: end;
+    gap: 3rem;
+    min-height: min(88vh, 820px);
+    padding-block: clamp(4rem, 3rem + 6vw, 8rem) clamp(3rem, 2rem + 4vw, 5rem);
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgb(255 255 255 / 0.4);
+    border-radius: 999px;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  .hero__title {
+    color: var(--blanc);
+    font-size: var(--fs-hero);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__line {
+    display: block;
+  }
+
+  .hero__since {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.15em 0.45em;
+    border-radius: 0.3em;
+    background: var(--jaune);
+    color: var(--bleu-nuit);
+    font-size: 0.42em;
+    letter-spacing: 0.02em;
+  }
+
+  .hero__devise {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0;
+    margin-top: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .hero__devise li:not(:last-child)::after {
+    content: '✚';
+    margin-inline: 0.9rem;
+    color: var(--jaune);
+  }
+
+  .hero__text {
+    font-size: var(--fs-lg);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 2rem;
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero__eyebrow {
+      font-size: var(--fs-xs);
+    }
+    .hero__actions .btn {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .hero__actions .btn--ghost {
+      justify-content: center;
+    }
+  }
+</style>

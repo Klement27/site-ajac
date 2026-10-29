@@ -1,0 +1,140 @@
+---
+import Icon from './Icon.astro';
+import { siteConfig, facebookUrl, telHref, mailHref } from '../lib/site';
+import accueil from '../data/accueil.json';
+
+interface Props {
+  headingLevel?: 'h1' | 'h2';
+}
+
+const { headingLevel = 'h2' } = Astro.props;
+const { contact } = accueil;
+const { contact: coords } = siteConfig;
+const Heading = headingLevel;
+
+const cards = [
+  { icon: 'phone', label: contact.phoneLabel, value: coords.phoneDisplay, href: telHref, color: 'vert' },
+  { icon: 'mail', label: contact.emailLabel, value: coords.email, href: mailHref, color: 'bleu' },
+  { icon: 'facebook', label: contact.facebookLabel, value: contact.facebookText, href: facebookUrl, color: 'facebook', external: true },
+  { icon: 'pin', label: contact.placeLabel, value: coords.address, color: 'orange' },
+  ...(coords.horaires
+    ? [{ icon: 'clock', label: contact.horairesLabel, value: coords.horaires, color: 'rose' }]
+    : []),
+];
+---
+
+<section class="section contact" id={contact.id} aria-labelledby="contact-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{contact.label}</p>
+      <Heading class="section-title" id="contact-title">{contact.title}</Heading>
+      <p>{contact.text}</p>
+    </div>
+
+    <ul class="contact__grid" data-reveal>
+      {
+        cards.map((c) => {
+          const Tag = c.href ? 'a' : 'div';
+          return (
+            <li>
+              <Tag
+                class={`contact-card contact-card--${c.color}`}
+                href={c.href}
+                {...(c.external ? { target: '_blank', rel: 'noopener' } : {})}
+              >
+                <span class="contact-card__icon">
+                  <Icon name={c.icon} size={26} />
+                </span>
+                <span class="contact-card__label">{c.label}</span>
+                <span class="contact-card__value">{c.value}</span>
+              </Tag>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--creme);
+  }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .contact__grid li {
+    display: flex;
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 100%;
+    padding: 1.75rem;
+    background: var(--blanc);
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    text-decoration: none;
+    color: var(--texte);
+    transition:
+      transform var(--transition),
+      box-shadow var(--transition);
+  }
+
+  a.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ombre);
+  }
+
+  a.contact-card:hover .contact-card__value {
+    text-decoration: underline;
+  }
+
+  .contact-card__icon {
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    margin-bottom: 0.75rem;
+    border-radius: 50%;
+    color: var(--blanc);
+    background: var(--accent);
+  }
+
+  .contact-card--vert {
+    --accent: var(--vert);
+  }
+  .contact-card--bleu {
+    --accent: var(--bleu-ciel);
+  }
+  .contact-card--facebook {
+    --accent: var(--facebook);
+  }
+  .contact-card--orange {
+    --accent: var(--orange-texte);
+  }
+  .contact-card--rose {
+    --accent: var(--rose);
+  }
+
+  .contact-card__label {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--texte-doux);
+  }
+
+  .contact-card__value {
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    color: var(--bleu-nuit);
+    overflow-wrap: anywhere;
+  }
+</style>

@@ -1,0 +1,303 @@
+---
+import Icon from './Icon.astro';
+import { siteConfig, facebookUrl } from '../lib/site';
+import accueil from '../data/accueil.json';
+
+const { facebook } = accueil;
+---
+
+<section class="section facebook" id={facebook.id} aria-labelledby="facebook-title">
+  <div class="container">
+    <div class="facebook__box" data-reveal>
+      <Icon name="facebook" size={420} class="facebook__watermark" />
+      <div class="facebook__content">
+        <p class="eyebrow facebook__eyebrow">{facebook.label}</p>
+        <h2 class="section-title facebook__title" id="facebook-title">{facebook.title}</h2>
+        <p class="facebook__text">{facebook.text}</p>
+        <a class="btn btn--facebook" href={facebookUrl} target="_blank" rel="noopener">
+          <Icon name="facebook" size={22} />
+          {facebook.cta}
+          <span class="btn__puck"><Icon name="arrow" size={20} /></span>
+        </a>
+        <a class="facebook__more" href={facebook.moreLink.href}>{facebook.moreLink.label}</a>
+        <ul class="facebook__highlights">
+          {
+            facebook.highlights.map((h) => (
+              <li>
+                <Icon name="check" size={18} />
+                {h}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Composition décorative : cartes flottantes autour du logo -->
+      <div class="facebook__visual" aria-hidden="true">
+        <div class="fb-center">
+          <img src={siteConfig.logoWeb} alt="" width="240" height="240" loading="lazy" decoding="async" />
+          <span class="fb-center__badge"><Icon name="facebook" size={26} /></span>
+        </div>
+        {
+          facebook.bubbles.map((bubble, i) => (
+            <div class={`fb-bubble fb-bubble--${i + 1}`}>
+              <span class="fb-bubble__icon">
+                <Icon name={bubble.icon} size={22} />
+              </span>
+              {bubble.text}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Le bandeau partenaires (blanc lui aussi) suit : on évite un double espace */
+  .facebook {
+    padding-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  }
+
+  .facebook__box {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    padding: clamp(2rem, 1.5rem + 3vw, 4.5rem);
+    border-radius: var(--rayon-lg);
+    color: var(--blanc);
+    background:
+      radial-gradient(circle at 100% 0%, rgb(255 194 14 / 0.25), transparent 40%),
+      radial-gradient(circle at 70% 60%, rgb(21 101 192 / 0.45), transparent 45%),
+      radial-gradient(rgb(255 255 255 / 0.07) 1.5px, transparent 1.5px) 0 0 / 22px 22px,
+      linear-gradient(135deg, var(--bleu-nuit) 0%, var(--bleu-nuit-2) 100%);
+    box-shadow: 0 40px 80px -40px rgb(23 50 79 / 0.6);
+  }
+
+  /* Grand « f » en filigrane */
+  .facebook__box :global(.facebook__watermark) {
+    position: absolute;
+    right: -90px;
+    bottom: -110px;
+    z-index: -1;
+    color: rgb(255 255 255 / 0.05);
+    pointer-events: none;
+  }
+
+  .facebook__more {
+    display: inline-block;
+    margin-left: 1.25rem;
+    padding-block: 0.75rem;
+    color: var(--blanc);
+    font-weight: 600;
+    text-underline-offset: 0.25em;
+  }
+
+  .facebook__more:hover {
+    color: var(--jaune);
+  }
+
+  .facebook__highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+  }
+
+  .facebook__highlights li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.9rem 0.4rem 0.6rem;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.06);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+
+  .facebook__highlights :global(svg) {
+    color: var(--jaune);
+  }
+
+  .facebook__eyebrow {
+    color: var(--jaune);
+  }
+
+  .facebook__title {
+    color: var(--blanc);
+    font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.6rem);
+  }
+
+  .facebook__text {
+    margin: 1.25rem 0 2rem;
+    font-size: var(--fs-lg);
+    color: var(--texte-sur-fonce);
+  }
+
+  .facebook__visual {
+    position: relative;
+    min-height: 380px;
+  }
+
+  /* Ondes concentriques derrière le logo */
+  .facebook__visual::before,
+  .facebook__visual::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 38%;
+    border-radius: 50%;
+    border: 1px solid rgb(255 255 255 / 0.14);
+    transform: translate(-50%, -50%);
+  }
+
+  .facebook__visual::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .facebook__visual::after {
+    width: 420px;
+    height: 420px;
+    border-style: dashed;
+    border-color: rgb(255 255 255 / 0.1);
+  }
+
+  .fb-center {
+    position: absolute;
+    top: 50%;
+    left: 38%;
+    width: 190px;
+    height: 190px;
+    padding: 1.25rem;
+    border-radius: 2rem;
+    background: var(--blanc);
+    box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.5);
+    transform: translate(-50%, -50%) rotate(-4deg);
+  }
+
+  .fb-center__badge {
+    position: absolute;
+    right: -14px;
+    bottom: -14px;
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: var(--facebook);
+    color: var(--blanc);
+    border: 4px solid var(--blanc);
+  }
+
+  .fb-bubble {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1.1rem 0.7rem 0.7rem;
+    border-radius: 1rem;
+    background: var(--blanc);
+    color: var(--bleu-nuit);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    white-space: nowrap;
+    box-shadow: 0 18px 40px -16px rgb(0 0 0 / 0.5);
+    animation: flotte 6s ease-in-out infinite;
+  }
+
+  .fb-bubble__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .fb-bubble--1 {
+    top: 4%;
+    left: 0;
+  }
+  .fb-bubble--1 .fb-bubble__icon {
+    background: var(--vert-pale);
+    color: var(--vert);
+  }
+
+  .fb-bubble--2 {
+    top: 40%;
+    right: 0;
+    animation-delay: -2s;
+  }
+  .fb-bubble--2 .fb-bubble__icon {
+    background: var(--orange-pale);
+    color: var(--orange-texte);
+  }
+
+  .fb-bubble--3 {
+    bottom: 4%;
+    left: 8%;
+    animation-delay: -4s;
+  }
+  .fb-bubble--3 .fb-bubble__icon {
+    background: var(--rose-pale);
+    color: var(--rose);
+  }
+
+  @keyframes flotte {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .facebook__box {
+      grid-template-columns: 1fr;
+    }
+    .facebook__visual {
+      min-height: 320px;
+      max-width: 420px;
+      width: 100%;
+      margin-inline: auto;
+    }
+  }
+
+  /* Sur petit écran, les bulles s'empilent sous le logo au lieu de flotter */
+  @media (max-width: 600px) {
+    .facebook__box .btn {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .facebook__visual {
+      display: grid;
+      justify-items: center;
+      gap: 0.75rem;
+      min-height: 0;
+    }
+    .fb-center {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 1rem;
+      transform: rotate(-4deg);
+    }
+    .fb-bubble {
+      position: static;
+      animation: none;
+    }
+    .facebook__visual::before,
+    .facebook__visual::after {
+      display: none;
+    }
+  }
+</style>

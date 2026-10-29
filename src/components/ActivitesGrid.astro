@@ -1,0 +1,224 @@
+---
+import Icon from './Icon.astro';
+import { imageExists, activitePath } from '../lib/site';
+import activites from '../data/activites.json';
+
+interface Props {
+  /** Nombre de cartes à afficher (toutes par défaut) */
+  limit?: number;
+  /** Ajoute un id à chaque carte pour les ancres de la page Activités */
+  anchors?: boolean;
+  /** Fait apparaître les cartes en douceur au défilement */
+  reveal?: boolean;
+  /** Niveau du titre des cartes (h2 quand la page n'a pas d'autre titre de section) */
+  titleTag?: 'h2' | 'h3';
+}
+
+const { limit, anchors = false, reveal = false, titleTag: Title = 'h3' } = Astro.props;
+const items = limit ? activites.items.slice(0, limit) : activites.items;
+---
+
+<ul class="cards">
+  {
+    items.map((item, i) => (
+      <li
+        id={anchors ? item.slug : undefined}
+        data-reveal={reveal ? '' : undefined}
+        style={reveal ? `transition-delay: ${(i % 3) * 90}ms` : undefined}
+      >
+        <article class={`card card--${item.color}`}>
+        {item.image && imageExists(item.image) && (
+          <img
+            class="card__img"
+            src={item.image}
+            alt=""
+            width="800"
+            height="500"
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+        <span class="card__icon">
+          <Icon name={item.icon} size={30} />
+        </span>
+        <Title class="card__title">{item.title}</Title>
+        <p class="card__text">{item.text}</p>
+        <div class="card__footer">
+          {item.galerie ? (
+            <a class="card__link" href={activitePath(item.slug)}>
+              {activites.labels.decouvrir}
+              <Icon name="arrow" size={18} />
+            </a>
+          ) : (
+            <span class="card__soon">
+              <Icon name="camera" size={16} />
+              {activites.labels.bientot}
+            </span>
+          )}
+        </div>
+        </article>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 0.5rem + 1.5vw, 2rem);
+  }
+
+  /* Le <li> gère l'apparition au défilement, la carte gère le survol */
+  .cards > li {
+    display: flex;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
+    background: var(--blanc);
+    border: 1px dashed var(--bordure);
+    border-radius: var(--rayon);
+    transition:
+      transform var(--transition),
+      box-shadow var(--transition),
+      border-color var(--transition);
+  }
+
+  /* Liseré de couleur qui se déploie en bas de carte au survol */
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: transparent;
+    box-shadow: var(--ombre);
+  }
+
+  .card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .card:hover .card__icon {
+    background: var(--accent);
+    color: var(--blanc);
+    transform: rotate(-6deg) scale(1.05);
+  }
+
+
+  /* Photo facultative en haut de carte (bord à bord) */
+  .card__img {
+    width: calc(100% + 2 * clamp(1.75rem, 1.5rem + 1vw, 2.5rem));
+    max-width: none;
+    aspect-ratio: 16 / 10;
+    margin: calc(-1 * clamp(1.75rem, 1.5rem + 1vw, 2.5rem)) calc(-1 * clamp(1.75rem, 1.5rem + 1vw, 2.5rem)) 1.5rem;
+    object-fit: cover;
+    border-radius: var(--rayon) var(--rayon) 0 0;
+  }
+
+  .card__icon {
+    display: grid;
+    place-items: center;
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-bottom: 1.5rem;
+    border-radius: 1rem;
+    color: var(--accent);
+    background: var(--accent-bg);
+    transition:
+      background-color var(--transition),
+      color var(--transition),
+      transform var(--transition);
+  }
+
+  .card--vert {
+    --accent: var(--vert);
+    --accent-bg: var(--vert-pale);
+  }
+  .card--bleu {
+    --accent: var(--bleu-ciel);
+    --accent-bg: var(--bleu-pale);
+  }
+  .card--orange {
+    --accent: var(--orange-texte);
+    --accent-bg: var(--orange-pale);
+  }
+  .card--rose {
+    --accent: var(--rose);
+    --accent-bg: var(--rose-pale);
+  }
+
+  .card__title {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .card__text {
+    color: var(--texte-doux);
+  }
+
+  /* Pied de carte : prêt pour les futures fiches/galeries par activité */
+  .card__footer {
+    margin-top: auto;
+    padding-top: 1.25rem;
+  }
+
+  .card__soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px dashed var(--bordure);
+    border-radius: 999px;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--texte-doux);
+  }
+
+  .card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .card__link:hover {
+    text-decoration: underline;
+  }
+
+  /* Toute la carte devient cliquable quand la fiche existe */
+  .card__link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  /* 3 colonnes sur ordinateur, 2 sur tablette, 1 sur mobile */
+  @media (max-width: 1023px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 639px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import { ui } from '../lib/site';
+
+interface Props {
+  title: string;
+  intro?: string;
+  /** Affiche le bandeau « page en construction » */
+  provisoire?: boolean;
+}
+
+const { title, intro, provisoire = false } = Astro.props;
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-header__title">{title}</h1>
+    {intro && <p class="page-header__intro">{intro}</p>}
+    {provisoire && <p class="page-header__notice">{ui.provisoire}</p>}
+  </div>
+</section>
+
+<style>
+  .page-header {
+    padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+    color: var(--blanc);
+    background:
+      radial-gradient(circle at 90% 10%, rgb(255 194 14 / 0.3), transparent 40%),
+      linear-gradient(135deg, var(--bleu-nuit) 0%, var(--bleu-nuit-2) 60%, var(--vert-fonce) 100%);
+  }
+
+  .page-header__title {
+    color: var(--blanc);
+    font-size: var(--fs-h2);
+    text-transform: uppercase;
+  }
+
+  .page-header__intro {
+    max-width: 40rem;
+    margin-top: 1rem;
+    font-size: var(--fs-lg);
+  }
+
+  .page-header__notice {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background: var(--jaune);
+    color: var(--bleu-nuit);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+</style>

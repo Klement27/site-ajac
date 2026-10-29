@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ActivitesGrid from '../components/ActivitesGrid.astro';
+import ContactSection from '../components/ContactSection.astro';
+import activites from '../data/activites.json';
+
+const { page } = activites;
+---
+
+<Base title={page.title} description={page.description}>
+  <PageHeader title={page.title} intro={page.intro} provisoire />
+  <section class="section" aria-label={page.title}>
+    <div class="container">
+      <ActivitesGrid anchors titleTag="h2" />
+    </div>
+  </section>
+  <ContactSection />
+</Base>

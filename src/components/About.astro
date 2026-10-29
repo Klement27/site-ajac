@@ -1,0 +1,182 @@
+---
+import Icon from './Icon.astro';
+import { imageExists } from '../lib/site';
+import accueil from '../data/accueil.json';
+
+interface Props {
+  /** Affiche le lien vers la page dédiée (inutile sur cette page elle-même) */
+  showCta?: boolean;
+  headingLevel?: 'h1' | 'h2';
+}
+
+const { showCta = true, headingLevel = 'h2' } = Astro.props;
+const { apropos } = accueil;
+const hasImage = imageExists(apropos.image);
+const Heading = headingLevel;
+---
+
+<section class="section apropos" id={apropos.id} aria-labelledby="apropos-title">
+  <div class="container">
+    <div class="apropos__box" data-reveal>
+      <div class="apropos__content">
+        <div class="apropos__intro">
+          <p class="eyebrow">{apropos.label}</p>
+          <Heading class="section-title" id="apropos-title">{apropos.title}</Heading>
+          <div class="apropos__text">
+            {apropos.text.map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+
+        <div class="apropos__points">
+          <h3 class="apropos__subtitle">{apropos.subtitle}</h3>
+          <ul class="points">
+            {
+              apropos.points.map((point) => (
+                <li class="point">
+                  <Icon name="check" size={26} class="point__icon" />
+                  <h4 class="point__title">{point.title}</h4>
+                  <p class="point__text">{point.text}</p>
+                </li>
+              ))
+            }
+          </ul>
+          {
+            showCta && (
+              <a class="btn btn--vert apropos__cta" href={apropos.cta.href}>
+                {apropos.cta.label}
+                <span class="btn__puck">
+                  <Icon name="arrow" size={20} />
+                </span>
+              </a>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="apropos__media">
+        {
+          hasImage ? (
+            <img
+              src={apropos.image}
+              alt={apropos.imageAlt}
+              width="1200"
+              height="1400"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <div class="apropos__placeholder">
+              <Icon name="users" size={56} />
+              <p>{apropos.imagePlaceholder}</p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .apropos__box {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    overflow: hidden;
+    background: var(--creme);
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon-lg);
+  }
+
+  .apropos__intro,
+  .apropos__points {
+    padding: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  }
+
+  .apropos__text {
+    margin-top: 1.5rem;
+    color: var(--texte-doux);
+    font-size: var(--fs-lg);
+  }
+
+  .apropos__points {
+    background: var(--creme-2);
+    border-top: 1px solid var(--bordure);
+  }
+
+  .apropos__subtitle {
+    font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.85rem);
+    font-weight: 800;
+    margin-bottom: 1.75rem;
+  }
+
+  .points {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem 2rem;
+  }
+
+  .point :global(.point__icon) {
+    color: var(--vert);
+    margin-bottom: 0.6rem;
+  }
+
+  .point__title {
+    font-size: var(--fs-base);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .point__text {
+    font-size: var(--fs-sm);
+    color: var(--texte-doux);
+  }
+
+  .apropos__cta {
+    margin-top: 2.25rem;
+  }
+
+  .apropos__media {
+    position: relative;
+    min-height: 320px;
+  }
+
+  .apropos__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .apropos__placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--blanc);
+    background:
+      radial-gradient(circle at 30% 20%, rgb(255 194 14 / 0.4), transparent 45%),
+      linear-gradient(160deg, var(--vert) 0%, var(--bleu-nuit) 100%);
+  }
+
+  @media (max-width: 900px) {
+    .apropos__box {
+      grid-template-columns: 1fr;
+    }
+    .apropos__media {
+      order: -1;
+      aspect-ratio: 4 / 3;
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .points {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

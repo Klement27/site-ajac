@@ -1,0 +1,19 @@
+{
+  "name": "site-ajac",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "stop": "astro dev stop"
+  },
+  "dependencies": {
+    "@fontsource/poppins": "^5.3.0",
+    "astro": "^7.4.4"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}

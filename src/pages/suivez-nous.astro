@@ -1,0 +1,250 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import PhoneMockup from '../components/PhoneMockup.astro';
+import { siteConfig, facebookUrl } from '../lib/site';
+import pages from '../data/pages.json';
+
+const page = pages.suivezNous;
+---
+
+<Base title={page.title} description={page.description}>
+  <link slot="head" rel="preload" as="image" href={page.screenshot} fetchpriority="high" />
+
+  <section class="suivez" aria-labelledby="suivez-title">
+    <div class="container suivez__inner">
+      <div class="suivez__content">
+        <p class="suivez__badge">
+          <Icon name="facebook" size={18} />
+          {page.badge}
+        </p>
+        <h1 class="suivez__title" id="suivez-title">{page.heading}</h1>
+        <p class="suivez__intro">{page.intro}</p>
+
+        <ul class="avantages">
+          {
+            page.avantages.map((a, i) => (
+              <li class={`avantage avantage--${a.color}`} data-reveal style={`transition-delay: ${i * 100}ms`}>
+                <span class="avantage__icon">
+                  <Icon name={a.icon} size={24} />
+                </span>
+                <div>
+                  <h2 class="avantage__title">{a.title}</h2>
+                  <p class="avantage__text">{a.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <a class="btn btn--facebook suivez__cta" href={facebookUrl} target="_blank" rel="noopener">
+          <Icon name="facebook" size={24} />
+          {page.cta}
+          <span class="btn__puck"><Icon name="arrow" size={20} /></span>
+        </a>
+        <p class="suivez__note">{page.ctaNote}</p>
+      </div>
+
+      <div class="suivez__visual">
+        <div class="suivez__halo" aria-hidden="true"></div>
+        <PhoneMockup src={page.screenshot} alt={page.screenshotAlt} />
+        <p class="suivez__chip" aria-hidden="true">
+          <img src={siteConfig.logoSmall} alt="" width="128" height="128" />
+          {page.phoneChip}
+          <span class="suivez__chip-check"><Icon name="check" size={18} /></span>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .suivez {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+    background:
+      radial-gradient(circle at 85% 30%, var(--bleu-pale), transparent 45%),
+      radial-gradient(circle at 5% 90%, var(--vert-pale), transparent 40%),
+      var(--creme);
+  }
+
+  .suivez__inner {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: clamp(2.5rem, 2rem + 4vw, 6rem);
+  }
+
+  /* --- Colonne texte --- */
+  .suivez__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    background: var(--facebook);
+    color: var(--blanc);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .suivez__title {
+    font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+
+  .suivez__intro {
+    max-width: 36rem;
+    margin-top: 1.25rem;
+    font-size: var(--fs-lg);
+    color: var(--texte-doux);
+  }
+
+  .avantages {
+    display: grid;
+    gap: 0.9rem;
+    margin-block: 2rem 2.25rem;
+  }
+
+  .avantage {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    background: var(--blanc);
+    box-shadow: var(--ombre-sm);
+  }
+
+  .avantage__icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    color: var(--accent);
+    background: var(--accent-bg);
+  }
+
+  .avantage--vert {
+    --accent: var(--vert);
+    --accent-bg: var(--vert-pale);
+  }
+  .avantage--orange {
+    --accent: var(--orange-texte);
+    --accent-bg: var(--orange-pale);
+  }
+  .avantage--bleu {
+    --accent: var(--facebook);
+    --accent-bg: var(--bleu-pale);
+  }
+
+  .avantage__title {
+    font-size: var(--fs-base);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .avantage__text {
+    font-size: var(--fs-sm);
+    color: var(--texte-doux);
+  }
+
+  .suivez__cta {
+    min-height: 3.75rem;
+    font-size: var(--fs-lg);
+    box-shadow: 0 18px 36px -14px rgb(21 101 192 / 0.6);
+  }
+
+  .suivez__note {
+    margin-top: 0.75rem;
+    font-size: var(--fs-xs);
+    color: var(--texte-doux);
+  }
+
+  /* --- Colonne smartphone --- */
+  .suivez__visual {
+    position: relative;
+    padding-block: 1rem 3rem;
+  }
+
+  .suivez__halo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(460px, 100%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, rgb(21 101 192 / 0.22), transparent 65%),
+      conic-gradient(from 90deg, var(--vert-pale), var(--bleu-pale), var(--orange-pale), var(--vert-pale));
+    filter: blur(8px);
+    transform: translate(-50%, -50%);
+  }
+
+  .suivez__chip {
+    position: absolute;
+    left: max(0px, calc(50% - 240px));
+    bottom: 18%;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0.5rem 0.9rem 0.5rem 0.5rem;
+    border-radius: 999px;
+    background: var(--blanc);
+    color: var(--bleu-nuit);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: var(--ombre);
+    animation: chip-flotte 6s ease-in-out -3s infinite;
+  }
+
+  .suivez__chip img {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--blanc);
+  }
+
+  .suivez__chip-check {
+    color: var(--facebook);
+  }
+
+  @keyframes chip-flotte {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .suivez__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .suivez__cta {
+      width: 100%;
+      justify-content: space-between;
+      font-size: var(--fs-base);
+    }
+    .suivez__chip {
+      left: 0;
+      bottom: 10%;
+      font-size: var(--fs-xs);
+    }
+  }
+</style>

@@ -1,0 +1,87 @@
+---
+import Icon from './Icon.astro';
+import { siteConfig, ui, telHref, mailHref } from '../lib/site';
+---
+
+<aside class="topbar" aria-label={ui.topbarLabel}>
+  <div class="container topbar__inner">
+    <p class="topbar__place">
+      <Icon name="pin" size={16} />
+      {siteConfig.subtitle}
+    </p>
+    <ul class="topbar__links">
+      <li>
+        <a href={mailHref}>
+          <Icon name="mail" size={16} />
+          <span>{siteConfig.contact.email}</span>
+        </a>
+      </li>
+      <li>
+        <a href={telHref}>
+          <Icon name="phone" size={16} />
+          <span>{siteConfig.contact.phoneDisplay}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+<style>
+  .topbar {
+    background: var(--bleu-nuit);
+    color: var(--texte-sur-fonce);
+    font-size: var(--fs-xs);
+  }
+
+  .topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.5rem;
+  }
+
+  .topbar__place,
+  .topbar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+  }
+
+  .topbar__links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .topbar a {
+    color: var(--blanc);
+    text-decoration: none;
+    min-height: 2.5rem;
+  }
+
+  .topbar a:hover span {
+    text-decoration: underline;
+  }
+
+  .topbar :global(svg) {
+    color: var(--jaune);
+  }
+
+  @media (max-width: 767px) {
+    .topbar__place {
+      display: none;
+    }
+    .topbar__links {
+      width: 100%;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .topbar__links li:first-child span {
+      max-width: 52vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+</style>

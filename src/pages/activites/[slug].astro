@@ -1,0 +1,82 @@
+---
+// Fiche détaillée d'une activité, avec sa galerie.
+// Une page n'est créée que pour les activités dont "galerie" vaut true dans activites.json.
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
+import type { Photo } from '../../lib/site';
+import activites from '../../data/activites.json';
+
+export function getStaticPaths() {
+  return activites.items
+    .filter((item) => item.galerie)
+    .map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const { labels } = activites;
+const photos = item.photos as Photo[];
+---
+
+<Base title={item.title} description={item.text}>
+  <PageHeader title={item.title} intro={item.text} />
+  <section class="section">
+    <div class="container">
+      <h2 class="galerie__title">{labels.galerieTitre}</h2>
+      {
+        photos.length ? (
+          <ul class="galerie">
+            {photos.map((p) => (
+              <li>
+                {p.video ? (
+                  <video src={p.src} controls preload="metadata" aria-label={p.alt} />
+                ) : (
+                  <img src={p.src} alt={p.alt} loading="lazy" decoding="async" />
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="galerie__vide">{labels.galerieVide}</p>
+        )
+      }
+      <a class="btn btn--vert btn--simple galerie__retour" href={`/activites/#${item.slug}`}>
+        <Icon name="arrow" size={18} class="galerie__retour-icon" />
+        {labels.retour}
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .galerie__title {
+    font-size: var(--fs-h3);
+    margin-bottom: 1.5rem;
+  }
+
+  .galerie {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .galerie img,
+  .galerie video {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--rayon);
+  }
+
+  .galerie__vide {
+    color: var(--texte-doux);
+  }
+
+  .galerie__retour {
+    margin-top: 2.5rem;
+  }
+
+  .galerie__retour :global(.galerie__retour-icon) {
+    transform: rotate(-135deg);
+  }
+</style>

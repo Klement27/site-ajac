@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { mentionsLegales as page } from '../lib/site';
+---
+
+<Base title={page.title} description={page.description}>
+  <PageHeader title={page.title} provisoire />
+  <section class="section">
+    <div class="container legal">
+      {
+        page.sections.map((s) => (
+          <>
+            <h2>{s.title}</h2>
+            <p>{s.text}</p>
+          </>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal {
+    max-width: 48rem;
+  }
+
+  .legal h2 {
+    margin: 2.5rem 0 0.75rem;
+    font-size: var(--fs-h3);
+  }
+
+  .legal h2:first-child {
+    margin-top: 0;
+  }
+
+  .legal p {
+    color: var(--texte-doux);
+  }
+</style>

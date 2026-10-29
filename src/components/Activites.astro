@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+import ActivitesGrid from './ActivitesGrid.astro';
+import accueil from '../data/accueil.json';
+
+const { activites } = accueil;
+---
+
+<section class="section activites" id={activites.id} aria-labelledby="activites-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title" id="activites-title">{activites.title}</h2>
+      <p>{activites.intro}</p>
+    </div>
+    <ActivitesGrid reveal />
+    <div class="activites__more">
+      <a class="btn btn--vert" href={activites.cta.href}>
+        {activites.cta.label}
+        <span class="btn__puck"><Icon name="arrow" size={20} /></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .activites {
+    background: var(--vert-brume);
+  }
+
+  .activites__more {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  }
+</style>

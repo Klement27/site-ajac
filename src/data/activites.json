@@ -1,0 +1,76 @@
+{
+  "page": {
+    "title": "Nos activités",
+    "description": "Randonnées, tournois de foot, actions éducatives et participation à la vie du Guillaume : découvrez ce que propose l'AJAC.",
+    "intro": "Voici les grands axes sur lesquels l'association se mobilise. Le programme se construit au fil des mois, selon les envies des membres et les moyens réunis."
+  },
+  "labels": {
+    "bientot": "Galerie photos bientôt disponible",
+    "decouvrir": "Découvrir l'activité",
+    "retour": "Toutes nos activités",
+    "galerieTitre": "En images",
+    "galerieVide": "Les photos et vidéos de cette activité arrivent bientôt."
+  },
+  "items": [
+    {
+      "slug": "randonnees",
+      "icon": "mountain",
+      "color": "vert",
+      "title": "Randonnées & plein air",
+      "text": "Des sorties nature pour découvrir les sentiers de l'île, se dépasser un peu et partager de bons moments en groupe.",
+      "image": "/images/activites/randonnees.jpg",
+      "galerie": false,
+      "photos": []
+    },
+    {
+      "slug": "tournois",
+      "icon": "ball",
+      "color": "bleu",
+      "title": "Tournois de foot",
+      "text": "Rencontres amicales et tournois pour faire vivre l'esprit d'équipe et rassembler les jeunes du quartier autour du ballon.",
+      "image": "/images/activites/tournois.jpg",
+      "galerie": false,
+      "photos": []
+    },
+    {
+      "slug": "cohesion",
+      "icon": "users",
+      "color": "orange",
+      "title": "Cohésion & convivialité",
+      "text": "Des temps d'échange entre membres pour mieux se connaître, souder le groupe et imaginer ensemble les prochains projets.",
+      "image": "/images/activites/cohesion.jpg",
+      "galerie": false,
+      "photos": []
+    },
+    {
+      "slug": "jeunesse",
+      "icon": "book",
+      "color": "rose",
+      "title": "Actions pour les jeunes",
+      "text": "Des projets éducatifs qui encouragent l'engagement, le respect et la prise de responsabilités au sein du collectif.",
+      "image": "/images/activites/jeunesse.jpg",
+      "galerie": false,
+      "photos": []
+    },
+    {
+      "slug": "quartier",
+      "icon": "home",
+      "color": "vert",
+      "title": "Cadre de vie au Guillaume",
+      "text": "Faire entendre la voix des habitants sur les lieux de rencontre, les équipements et l'aménagement du quartier.",
+      "image": "/images/activites/quartier.jpg",
+      "galerie": false,
+      "photos": []
+    },
+    {
+      "slug": "citoyennete",
+      "icon": "megaphone",
+      "color": "bleu",
+      "title": "Participation citoyenne",
+      "text": "Échanger avec les conseils de quartier et les acteurs locaux pour porter des propositions utiles à tous.",
+      "image": "/images/activites/citoyennete.jpg",
+      "galerie": false,
+      "photos": []
+    }
+  ]
+}

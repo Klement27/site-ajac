@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+import { ui, telHref, mailHref } from '../lib/site';
+---
+
+<nav class="mobile-bar" aria-label={ui.mobileBar.label}>
+  <a class="mobile-bar__btn mobile-bar__btn--call" href={telHref}>
+    <Icon name="phone" size={20} />
+    {ui.mobileBar.call}
+  </a>
+  <a class="mobile-bar__btn mobile-bar__btn--contact" href={mailHref}>
+    <Icon name="mail" size={20} />
+    {ui.mobileBar.contact}
+  </a>
+</nav>
+
+<style>
+  .mobile-bar {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .mobile-bar {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 90;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      height: calc(var(--mobile-bar-h) + env(safe-area-inset-bottom));
+      padding: 0.55rem var(--gouttiere) calc(0.55rem + env(safe-area-inset-bottom));
+      background: var(--blanc);
+      border-top: 1px solid var(--bordure);
+      box-shadow: 0 -8px 24px -12px rgb(23 50 79 / 0.3);
+    }
+
+    .mobile-bar__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .mobile-bar__btn--call {
+      background: var(--vert);
+      color: var(--blanc);
+    }
+
+    .mobile-bar__btn--contact {
+      background: var(--orange);
+      color: var(--bleu-nuit);
+    }
+  }
+</style>

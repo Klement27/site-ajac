@@ -1,0 +1,48 @@
+{
+  "quiSommesNous": {
+    "title": "Qui sommes-nous",
+    "description": "L'AJAC, association de quartier du Guillaume à Saint-Paul, créée en 1996 et relancée en mai 2026.",
+    "intro": "Découvrez l'histoire de l'AJAC, ses valeurs et l'équipe qui porte sa relance."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Contactez l'AJAC par téléphone, par email ou sur Facebook.",
+    "intro": "Pour toute question sur nos activités, un appel ou un message suffit."
+  },
+  "erreur404": {
+    "title": "Page introuvable",
+    "intro": "Cette page n'existe pas ou a été déplacée."
+  },
+  "suivezNous": {
+    "title": "Suivez-nous",
+    "description": "Rejoignez la page Facebook de l'AJAC pour suivre la vie de l'association au Guillaume : photos, annonces et échanges.",
+    "badge": "Communauté & actualités",
+    "heading": "Ne ratez rien de la vie de l'association au Guillaume !",
+    "intro": "Notre page Facebook est le cœur battant de l'AJAC au quotidien. Rejoignez les habitants du quartier pour suivre nos projets, nos sorties et échanger avec nous.",
+    "avantages": [
+      {
+        "icon": "camera",
+        "color": "vert",
+        "title": "Les photos des événements",
+        "text": "Découvrez les souvenirs de nos sorties et activités en images."
+      },
+      {
+        "icon": "calendar",
+        "color": "orange",
+        "title": "Annonces en avant-première",
+        "text": "Soyez les premiers informés des futures dates et inscriptions."
+      },
+      {
+        "icon": "message",
+        "color": "bleu",
+        "title": "Échanges directs",
+        "text": "Posez vos questions et proposez vos idées directement via Messenger."
+      }
+    ],
+    "cta": "Rejoindre la page Facebook",
+    "ctaNote": "S'ouvre dans un nouvel onglet",
+    "screenshot": "/images/facebook-app-screenshot-web.jpg",
+    "screenshotAlt": "Aperçu de la page Facebook de l'AJAC sur smartphone : logo, présentation de l'association et bouton Message",
+    "phoneChip": "Page officielle de l'AJAC"
+  }
+}

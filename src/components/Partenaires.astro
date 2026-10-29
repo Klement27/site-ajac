@@ -1,0 +1,89 @@
+---
+// Bandeau de logos des partenaires : fond blanc, logos alignés et centrés.
+import partenaires from '../data/partenaires.json';
+
+const { titre, partenaires: liste } = partenaires;
+---
+
+{
+  liste.length > 0 && (
+    <section class="partenaires" aria-labelledby="partenaires-title">
+      <div class="container">
+        <h2 class="partenaires__title" id="partenaires-title">{titre}</h2>
+        <ul class="partenaires__logos">
+          {liste.map((p) => {
+            const Tag = p.url ? 'a' : 'span';
+            return (
+              <li>
+                <Tag
+                  class="partenaire"
+                  href={p.url || undefined}
+                  title={`${p.nom} – ${p.role}`}
+                  {...(p.url ? { target: '_blank', rel: 'noopener' } : {})}
+                >
+                  <img
+                    src={p.logo}
+                    alt={p.nom}
+                    width={p.largeur}
+                    height={p.hauteur}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </Tag>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .partenaires {
+    padding-block: clamp(2.75rem, 2rem + 3vw, 4.5rem);
+    background: var(--blanc);
+  }
+
+  .partenaires__title {
+    margin-bottom: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--texte-doux);
+  }
+
+  /* Une seule ligne centrée ; passe à la ligne si les logos sont nombreux */
+  .partenaires__logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+  }
+
+  .partenaire {
+    display: block;
+    transition:
+      transform var(--transition),
+      opacity var(--transition);
+  }
+
+  .partenaire img {
+    width: auto;
+    height: clamp(64px, 50px + 3vw, 92px);
+    max-width: 220px;
+    object-fit: contain;
+  }
+
+  /* Survol discret */
+  .partenaire:hover {
+    transform: scale(1.04);
+  }
+
+  .partenaires__logos:hover .partenaire:not(:hover) {
+    opacity: 0.6;
+  }
+</style>
